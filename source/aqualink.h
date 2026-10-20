@@ -65,7 +65,7 @@ bool checkAqualinkTime(); // Only need to externalise this for PDA
 //#define UNKNOWN TEMP_UNKNOWN
 #define DATE_STRING_LEN   30
 
-#define MAX_PUMPS 4
+#define MAX_PUMPS 5 // local: was 4. 5th = basin (NegEdge) ePump, a virtual-button pump
 #define MAX_LIGHTS 4
 #define MAX_SENSORS 4
 

@@ -38,7 +38,7 @@
 #define JANDY_DEV_PUMP_MAX     0x7B
 
 #define JANDY_DEV_PUMP2_MIN    0xE0
-#define JANDY_DEV_PUMP2_MAX    0xE3
+#define JANDY_DEV_PUMP2_MAX    0xE4  // local: was 0xE3. RS-16 Combo rev Y polls a 5th ePump at 0xE4
 
 #define JANDY_DEV_JXI_MIN      0x68
 #define JANDY_DEV_JXI_MAX      0x6B
