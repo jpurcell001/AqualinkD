@@ -1160,7 +1160,9 @@ bool processPacketFromHeatPump(unsigned char *packet_buffer, int packet_length, 
   if (packet_buffer[3] == 0x0d ) {
     if (packet_buffer[4] == 0x40) {
       //updateHeatPumpLed(HP_HEAT, OFF, aqdata, HP_TO_PANEL);
-      updateHeatPumpLed(HP_HEAT, ENABLE, aqdata, HP_TO_PANEL);
+      // 0x40 is not running, from a heat pump and a chiller alike, so it says nothing about heat or cool mode.
+      // Passing HP_HEAT put a chiller back in heat pump mode on every reply while it was enabled but idle.
+      updateHeatPumpLed(HP_UNKNOWN, ENABLE, aqdata, HP_TO_PANEL);
     } else if (packet_buffer[4] == 0x48) {
       updateHeatPumpLed(HP_HEAT, ON, aqdata, HP_TO_PANEL);
     } else if (packet_buffer[4] == 0x68) {
