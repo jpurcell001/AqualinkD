@@ -12,8 +12,10 @@ the retire condition all live there, not in this repo.
   `git fetch upstream && git push origin upstream/master:master`.
 - **`ha-prod`** is what runs: the upstream release the install is pinned to, plus one
   commit per patch. `source/version.h` carries a local marker
-  (`<release>+<topic>.<n>`) so the running binary identifies itself, and the commit that
-  produced each deployed build is tagged `v<marker>` (e.g. `v3.1.0+negedge.1`). Moving to
+  (`<release>+ha.<n>`, `n` counting our builds; the first was `3.1.0+negedge.1`) so the
+  running binary identifies itself, and the commit that produced each deployed build is
+  tagged `v<marker>` (e.g. `v3.1.0+ha.2`). A patch reaches `ha-prod` only once it is
+  deployed; build and test it on a local branch first. Moving to
   a new upstream release means a fresh `ha-prod` from that tag with the patches
   cherry-picked; upstream releases from 3.1.1 ship their own `AGENTS.md`, so fold this
   section into it.
