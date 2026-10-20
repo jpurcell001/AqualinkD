@@ -1212,10 +1212,15 @@ void updateHeatPumpLed(heatpumpstate state, aqledstate ledstate, struct aqualink
   if (aqdata->chiller_button == NULL)
     return;
   
-  // ledstate Enabled is valied from Display and FromPanel HP_FROM_PANEL, HP_DISPLAY (NOT valid from HP ie HP_TO_PANEL)
+  // ledstate Enabled is valied from Display and FromPanel HP_FROM_PANEL, HP_DISPLAY
+  //   but the panel keeps requesting cool (0x29 = Enabled) while the chiller is running, so from the panel it can't turn ON into Enabled,
+  //   only the HP saying it's not running (0x40 HP_TO_PANEL) can, otherwise ON and Enabled swap on every request and reply.
   // ledstate on off is only valid from HP or DISPLAY HP_TO_PANEL or HP_TO_PANEL (NOT FROM HP_FROM_PANEL)
+  aqledstate current = aqdata->chiller_button->led->state;
 
-  if ( (ledstate == ENABLE && (from == HP_DISPLAY || from == HP_FROM_PANEL)) ||
+  if ( (ledstate == ENABLE && (from == HP_DISPLAY ||
+                               (from == HP_FROM_PANEL && current != ON) ||
+                               (from == HP_TO_PANEL && current == ON))) ||
        ( (ledstate == ON || ledstate == OFF) && (from == HP_DISPLAY || from == HP_TO_PANEL) )) {
     SET_IF_CHANGED(aqdata->chiller_button->led->state, ledstate, aqdata->is_dirty);
   }
