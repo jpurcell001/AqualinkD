@@ -735,7 +735,7 @@ ot_menu_type get_onetouch_menu_type()
 }
 
 void pump_update(struct aqualinkdata *aqdata, int updated) {
-  const int bitmask[MAX_PUMPS] = {1,2,4,8};
+  const int bitmask[MAX_PUMPS] = {1,2,4,8,16};
   static unsigned char updates = '\0';
   int i;
 

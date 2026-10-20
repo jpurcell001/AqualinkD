@@ -438,7 +438,7 @@ void processPageButton(unsigned char *message, int length, struct aqualinkdata *
 
 // Log if we saw a pump in a device page cycle.
 void iaqt_pump_update(struct aqualinkdata *aqdata, int updated) {
-  const int bitmask[MAX_PUMPS] = {1,2,4,8};
+  const int bitmask[MAX_PUMPS] = {1,2,4,8,16};
   static unsigned char updates = '\0';
   //int i;
 

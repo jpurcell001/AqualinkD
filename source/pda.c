@@ -577,7 +577,7 @@ void process_pda_packet_msg_long_unknown(const char *msg)
 }
 
 void pda_pump_update(struct aqualinkdata *aqdata, int updated) {
-  const int bitmask[MAX_PUMPS] = {1,2,4,8};
+  const int bitmask[MAX_PUMPS] = {1,2,4,8,16};
   static unsigned char updates = '\0';
   int i;
 
